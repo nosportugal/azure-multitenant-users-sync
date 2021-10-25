@@ -31,7 +31,6 @@ Azure Function App that synchronizes AD users between two tenants.
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
-<br />
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -60,10 +59,8 @@ The main frameworks used to develop the synchronization app are described below:
 ## Getting Started
 
 Below you will find the installation process for running the function locally or on an Azure tenant.
-<br />
 
 ### Prerequisites
-<br />
 
 #### Running Locally
 
@@ -88,10 +85,9 @@ Below you will find the installation process for running the function locally or
     }
     ```
 3. Start the function
-   ```sh
+   ```bash
    func start
    ```
-<br />
 
 #### Running on Azure
 <p align="right">(<a href="#top">back to top</a>)</p>
