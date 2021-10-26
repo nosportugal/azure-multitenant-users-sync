@@ -39,7 +39,7 @@ The repository contains an Azure Serveless Function that synchronizes AD users b
 Motivation:
 * The need to sync users between two tenants.
 * Currently, an open source solution that solves the multi-tenant user synchronization problem is inexistent.
-* It's a prerequesite to implement an Azure Entreprise-Scale Landing Zone.
+* It's a prerequesite to implement an [Azure Entreprise-Scale Landing Zone](https://github.com/Azure/terraform-azurerm-caf-enterprise-scale).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
