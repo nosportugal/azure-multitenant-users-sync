@@ -7,7 +7,7 @@ using Microsoft.Graph;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 
-namespace NOSPortugal.Azure.UsersSync
+namespace NOSPortugal.Azure
 {
     /// <summary>
     /// Helper functions static class.
