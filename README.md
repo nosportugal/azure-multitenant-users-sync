@@ -116,7 +116,7 @@ Below you will find the installation process for running the function locally or
    terraform apply plan.tfplan
    ```
 
-7. Create an [Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and store the client secret on the key vault created via terraform. Note: the app registration needs the correct permissions on both tenants to be able to read/write groups and send invitations.
+7. Create an [Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and store the client secret on the key vault created via terraform. NOTE: the app registration needs the correct permissions on both tenants to be able to read/write groups and send invitations.
 
 8. Add the necessary ```app_settings``` in the ```terraform/func.tf``` file
 
@@ -129,5 +129,6 @@ Below you will find the installation process for running the function locally or
    git tag vx.x.x
    git push --tags
    ```
+  NOTE: for the Github Actions to work you need to get the [Azure Function Publish Profile](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-github-actions?tabs=dotnet) and store it as a github secret with the name ```AZURE_FUNCTIONAPP_PUBLISH_PROFILE```.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
