@@ -88,7 +88,7 @@ resource "azurerm_function_app" "this" {
     "DST_TENANT_ID"                  = "<THE_DESTINATION_TENANT_ID>",
     "DST_GROUP_ID"                   = "<THE_DESTINATION_GROUP_ID>",
     "CLIENT_ID"                      = "<THE_APP_REGISTRATION_ID>",
-    "CLIENT_SECRET"                  = "@Microsoft.KeyVault(SecretUri=<URI_TO_THE_CLIENT_SECRET>",
+    "CLIENT_SECRET"                  = "@Microsoft.KeyVault(SecretUri=<URI_TO_THE_APP_REGISTRATION_SECRET>",
     "INVITE_BASE_URL"                = "https://portal.azure.com"
     "REQUEST_MAX_RETRIES"            = "5"
   }
