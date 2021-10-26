@@ -1,6 +1,6 @@
 variable "tenant_id" {
   type        = string
-  description = "The azure tenant id."
+  description = "The azure tenant id where the function resides."
 }
 
 variable "subscription_id" {
@@ -10,5 +10,5 @@ variable "subscription_id" {
 
 variable "location" {
   type        = string
-  description = "The resources Azure location."
+  description = "The Azure location where the function resources will be created."
 }
