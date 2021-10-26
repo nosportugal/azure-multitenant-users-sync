@@ -10,5 +10,5 @@ variable "subscription_id" {
 
 variable "location" {
   type        = string
-  description = "The resouces Azure location."
+  description = "The resources Azure location."
 }
