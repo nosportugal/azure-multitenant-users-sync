@@ -65,12 +65,13 @@ Below you will find the installation process for running the function locally or
 #### Running Locally
 
 1. Install the [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v3%2Clinux%2Ccsharp%2Cportal%2Cbash%2Ckeda#v2)
-2. Configure the local.settings.json file on the root folder
+2. Configure an [Azure Storage Account Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
+3. Configure the local.settings.json file on the root folder
     ```json
     {
       "IsEncrypted": false,
       "Values": {
-        "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=<YOUR_STORAGE_ACCOUNT_NAME>;AccountKey=<YOUR_STORAGE_ACCOUNT_KEY>;EndpointSuffix=core.windows.net",
+        "AzureWebJobsStorage": "<LOCAL_STORAGE_CONNECTION_STRING>",
         "ScheduleTrigger": "0 */5 * * * *",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet",
         "SRC_TENANT_ID": "<THE_SOURCE_TENANT_ID>",
@@ -84,7 +85,7 @@ Below you will find the installation process for running the function locally or
       }
     }
     ```
-3. Start the function
+4. Start the function
    ```bash
    func start
    ```

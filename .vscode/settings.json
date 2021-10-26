@@ -1,7 +1,13 @@
 {
-    "azureFunctions.deploySubpath": "bin/Release/netcoreapp3.1/publish",
-    "azureFunctions.projectLanguage": "C#",
-    "azureFunctions.projectRuntime": "~3",
-    "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "publish (functions)"
+  "azureFunctions.deploySubpath": "bin/Release/netcoreapp3.1/publish",
+  "azureFunctions.projectLanguage": "C#",
+  "azureFunctions.projectRuntime": "~3",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.preDeployTask": "publish (functions)",
+  "files.associations": {
+    "*.hcl": "terraform"
+  },
+  "[terraform]": {
+    "editor.formatOnSave": true
+  }
 }
