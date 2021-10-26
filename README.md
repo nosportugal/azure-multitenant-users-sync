@@ -65,7 +65,9 @@ Below you will find the installation process for running the function locally or
 
 2. Configure an [Azure Storage Account Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
 
-3. Configure the ```local.settings.json``` file on the root folder
+3. Create an Azure App Registration and store the client secret on the key vault created via terraform. NOTE: the app registration needs the correct permissions on both tenants to be able to read/write groups and send invitations.
+
+4. Configure the ```local.settings.json``` file on the root folder
     ```json
     {
       "IsEncrypted": false,
@@ -85,7 +87,7 @@ Below you will find the installation process for running the function locally or
     }
     ```
 
-4. Start the function
+5. Start the function
    ```bash
    func start
    ```
