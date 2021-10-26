@@ -110,15 +110,15 @@ Below you will find the installation process for running the function locally or
    alias export-terraform-for-azurerm="export ARM_CLIENT_ID=<YOUR_SPN_ID> && export ARM_CLIENT_SECRET=<YOUR_SPN_SECRET> && export ARM_SUBSCRIPTION_ID=<YOUR_SUBSCRIPTION_ID> && export ARM_TENANT_ID=<YOUR_TENANT_ID>"
    ```
 
-6. Deploy the Azure Resources using Terraform
+6. Create an [Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and store the client secret on the key vault created via terraform. NOTE: the app registration needs the correct permissions on both tenants to be able to read/write groups and send invitations.
+
+7. Deploy the Azure Resources using Terraform
    ```bash
    cd terraform/
    terraform init
    terraforn plan -out plan.tfplan
    terraform apply plan.tfplan
    ```
-
-7. Create an [Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and store the client secret on the key vault created via terraform. NOTE: the app registration needs the correct permissions on both tenants to be able to read/write groups and send invitations.
 
 8. Add the necessary ```app_settings``` in the ```terraform/func.tf``` file
 
