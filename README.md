@@ -65,7 +65,9 @@ Below you will find the installation process for running the function locally or
 #### Running Locally
 
 1. Install the [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v3%2Clinux%2Ccsharp%2Cportal%2Cbash%2Ckeda#v2)
+
 2. Configure an [Azure Storage Account Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
+
 3. Configure the local.settings.json file on the root folder
     ```json
     {
@@ -85,10 +87,50 @@ Below you will find the installation process for running the function locally or
       }
     }
     ```
+
 4. Start the function
    ```bash
    func start
    ```
 
 #### Running on Azure
+
+1. Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+
+2. Install the [Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+
+3. Login to your Azure Tenant
+   ```bash
+   az login --tenant <YOUR_AZURE_TENANT>
+   ```
+
+4. Create a [Service Principal](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret) for Terraform automation with the correct permissions to interact with Azure Resources.
+
+5. If you want, create an alias to export the environment variables for your Service Principal
+   ```bash
+   alias export-terraform-for-azurerm="export ARM_CLIENT_ID=<YOUR_SPN_ID> && export ARM_CLIENT_SECRET=<YOUR_SPN_SECRET> && export ARM_SUBSCRIPTION_ID=<YOUR_SUBSCRIPTION_ID> && export ARM_TENANT_ID=<YOUR_TENANT_ID>"
+   ```
+
+6. Deploy the Azure Resources using Terraform
+   ```bash
+   cd terraform/
+   terraform init
+   terraforn plan -out plan.tfplan
+   terraform apply plan.tfplan
+   ```
+
+7. Create an [Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and store the client secret on the key vault created via terraform. Note: the app registration needs the correct permissions on both tenants to be able to read/write groups and send invitations.
+
+8. Add the necessary ```app_settings``` in the ```terraform/func.tf``` file
+
+9. Deploy the function using the ```Azure Functions Core Tools``` or by creating a new tag on the main branch (the code will be deployed using Github Actions)
+   ```bash
+   func azure functionapp publish users-sync
+   ```
+   or
+   ```bash
+   git tag vx.x.x
+   git push --tags
+   ```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
