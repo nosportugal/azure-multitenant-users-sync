@@ -65,7 +65,7 @@ Below you will find the installation process for running the function locally or
 
 2. Configure an [Azure Storage Account Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
 
-3. Configure the local.settings.json file on the root folder
+3. Configure the ```local.settings.json``` file on the root folder
     ```json
     {
       "IsEncrypted": false,
