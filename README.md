@@ -138,7 +138,6 @@ Below you will find the installation process for running the function locally or
 ## Contributing
 
 Contributions are what make the open source community awesome. Any contributions you make are **greatly appreciated**.
-Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/my-feature`)
