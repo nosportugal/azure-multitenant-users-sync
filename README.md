@@ -122,6 +122,7 @@ Below you will find the installation process for running the function locally or
 
 9. Deploy the function using the ```Azure Functions Core Tools``` or by creating a new tag on the main branch (the code will be deployed using Github Actions)
    ```bash
+   az account set --subscription <YOUR_DESTINATION_SUBSCRIPTION_ID>
    func azure functionapp publish users-sync
    ```
    or
