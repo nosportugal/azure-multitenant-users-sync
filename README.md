@@ -65,7 +65,7 @@ Below you will find the installation process for running the function locally or
 
 2. Configure an [Azure Storage Account Emulator](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
 
-3. Create an Azure App Registration and save the the client ID and client secret. NOTE: the app registration needs the correct permissions on both tenants to be able to read/write groups and send invitations.
+3. Create an [Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and save the client ID and client secret. NOTE: the app registration needs the correct permissions on both tenants to be able to read/write groups and send invitations.
 
 4. Configure the ```local.settings.json``` file on the root folder
     ```json
