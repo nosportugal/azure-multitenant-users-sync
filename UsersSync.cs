@@ -220,7 +220,7 @@ namespace NOSPortugal.Azure
             }
 
             try {
-              log.LogInformation($"Loading group memebers using app registration '{clientId}'...");
+              log.LogInformation($"Loading group members using app registration '{clientId}'...");
               string[] scopes = { "https://graph.microsoft.com/.default" };
 
               var srcClient = UsersSyncHelper.AuthClient(srcTenantId, clientId, clientSecret, scopes);
