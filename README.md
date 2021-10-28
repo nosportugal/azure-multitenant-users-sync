@@ -109,8 +109,8 @@ Below you will find the installation process for running the function locally or
    ```bash
    alias export-terraform-for-azurerm="export ARM_CLIENT_ID=<YOUR_SPN_ID> && export ARM_CLIENT_SECRET=<YOUR_SPN_SECRET> && export ARM_SUBSCRIPTION_ID=<YOUR_SUBSCRIPTION_ID> && export ARM_TENANT_ID=<YOUR_TENANT_ID>"
    ```
-
-6. Create an [Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and store the client secret on the key vault created via terraform. NOTE: the app registration needs the correct permissions on both tenants to be able to read/write groups and send invitations. (```Directory.ReadWrite.All``` and ```User.Invite.All```)
+   
+6. Add the necessary ```app_settings``` in the ```terraform/func.tf``` file
 
 7. Deploy the Azure Resources using Terraform
    ```bash
@@ -119,8 +119,8 @@ Below you will find the installation process for running the function locally or
    terraforn plan -out plan.tfplan
    terraform apply plan.tfplan
    ```
-
-8. Add the necessary ```app_settings``` in the ```terraform/func.tf``` file
+   
+8. Create an [Azure App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and store the client secret on the key vault created via terraform. NOTE: the app registration needs the correct permissions on both tenants to be able to read/write groups and send invitations. (```Directory.ReadWrite.All``` and ```User.Invite.All```)
 
 9. Deploy the function using the ```Azure Functions Core Tools``` or by creating a new tag on the main branch (the code will be deployed using Github Actions)
    ```bash
