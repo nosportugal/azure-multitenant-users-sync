@@ -86,7 +86,7 @@ namespace NOSPortugal.Azure
         /// <param name="maxRetries">Request max retries to the Graph API.</param>
         /// <param name="token">Context cancellation token.</param>
         /// <returns>Tuple containing simple stats report of the synchronization result.</returns>
-        public static async Task<(int usrAdded, int usrDel, int totalUsers)> SyncUsers(
+        public static async Task<(int usrAdded, int usrDel, int totalUsers, int updatedUsers)> SyncUsers(
             GraphServiceClient srcClient,
             GraphServiceClient dstClient,
             ConcurrentDictionary<string, User> srcMembers,
@@ -97,7 +97,7 @@ namespace NOSPortugal.Azure
             int maxRetries,
             CancellationToken token)
         {
-            var report = (usrAdded: 0, usrDel: 0, totalUsers: 0);
+            var report = (usrAdded: 0, usrDel: 0, totalUsers: 0, updatedUsers: 0);
             // add users as guests in destination
             foreach (var srcMemberPair in srcMembers)
             {
@@ -135,7 +135,36 @@ namespace NOSPortugal.Azure
                     report.usrAdded += 1;
                 }
             }
+            //Update existing users with First and Last name from the source AD
+            foreach (var dstMemberPair in dstMembers)
+            {
+                //if source user is already in the destination AD group, sync the firstname and lastname parameters
+                if(srcMembers.ContainsKey(dstMemberPair.Key))
+                {
+                    //get first and last name from the source AD
+                    var srcUser = srcMembers[dstMemberPair.Key];
+                    var firstName = srcUser.GivenName.ToString();
+                    var lastName = srcUser.Surname.ToString();
 
+                    //create user object with source values
+                    Microsoft.Graph.User user = new Microsoft.Graph.User()
+                    {
+                        GivenName = firstName,
+                        Surname = lastName
+                    };
+
+                    var updUser = dstMemberPair.Value;
+                    var destUserIdtoUpdate = updUser.Id.ToString();
+
+                    //Update user in destination AD group
+                    await dstClient.Groups[dstGroupId].Members[destUserIdtoUpdate]
+                      .Request()
+                      .WithMaxRetry(maxRetries)
+                      .UpdateAsync(user, token);
+
+                  report.updatedUsers += 1;
+                }
+            }
             // remove users from dest group
             foreach (var dstMemberPair in dstMembers)
             {
@@ -236,6 +265,7 @@ namespace NOSPortugal.Azure
               log.LogInformation("Users synced!");
               log.LogInformation($"# Users added: {report.usrAdded}");
               log.LogInformation($"# Users deleted: {report.usrDel}");
+              log.LogInformation($"# Users updated: {report.updatedUsers}");
               log.LogInformation($"# of Users: {report.totalUsers}");
 
             } catch (Exception ex) {
